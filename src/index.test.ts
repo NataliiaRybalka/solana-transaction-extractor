@@ -171,6 +171,8 @@ const transactionDataExample = {
 describe('extract', () => {
   test('extract data from transaction details', async () => {
     const transactionData = extract(transactionDetails);
+    console.log(transactionData);
+    
     expect(transactionData.from).toBe(transactionDataExample.from);
     expect(transactionData.to).toBe(transactionDataExample.to);
     expect(transactionData.amount).toBe(transactionDataExample.amount);
