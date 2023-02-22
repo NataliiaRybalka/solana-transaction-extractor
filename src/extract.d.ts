@@ -36,27 +36,6 @@ interface TokenBalance {
   uiTokenAmount: TokenAmount,
 }
 
-interface Meta {
-  computeUnitsConsumed: number,
-  err: boolean | string,////////////////
-  fee: number,
-  innerInstructions: Array<string>,//////////////////////
-  logMessages: Array<string>,
-  postBalances: Array<number>,
-  postTokenBalances: Array<TokenBalance>,
-  preBalances: Array<number>,
-  preTokenBalances: Array<TokenBalance>,
-  rewards: Array<string>,/////////////////
-  status: Object,//////////////////
-}
-
-interface AccountKey {
-  pubkey: string,
-  signer: boolean,
-  source: source,
-  writable: boolean,
-}
-
 interface Info {
   destination: string,
   mint: string,
@@ -75,6 +54,32 @@ interface Instruction {
   parsed: Parsed,
   program: program,
   programId: string,
+}
+
+interface InnerInstruction {
+  index: number,
+  instructions: Instruction,
+}
+
+interface Meta {
+  computeUnitsConsumed: number,
+  err: boolean | string,
+  fee: number,
+  innerInstructions: Array<InnerInstruction>,
+  logMessages: Array<string>,
+  postBalances: Array<number>,
+  postTokenBalances: Array<TokenBalance>,
+  preBalances: Array<number>,
+  preTokenBalances: Array<TokenBalance>,
+  rewards: Array<string>,
+  status: Object,
+}
+
+interface AccountKey {
+  pubkey: string,
+  signer: boolean,
+  source: source,
+  writable: boolean,
 }
 
 interface Message {
