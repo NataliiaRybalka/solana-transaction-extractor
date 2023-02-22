@@ -1,3 +1,1 @@
-function helloWorld() {
-  console.log('works');
-}
+export * from './extract';
