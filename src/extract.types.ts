@@ -43,6 +43,8 @@ interface Info {
   signers: Array<string>,
   source: string,
   tokenAmount: TokenAmount,
+  amount: string,
+  lamports: string,
 }
 
 interface Parsed {
@@ -99,4 +101,12 @@ export interface TransactionDetail {
   meta: Meta,
   slot: number,
   transaction: Transaction,
+}
+
+export interface TransactionData {
+  from: string,
+  to: string,
+  amount: number,
+  date: Date,
+  signature: string,
 }
