@@ -37,14 +37,14 @@ interface TokenBalance {
 }
 
 interface Info {
-  destination: string,
-  mint: string,
-  multisigAuthority: string,
-  signers: Array<string>,
-  source: string | source,
+  destination?: string,
+  mint?: string,
+  multisigAuthority?: string,
+  signers?: Array<string>,
+  source?: string | source,
   tokenAmount?: TokenAmount,
   amount?: string,
-  lamports?: string,
+  lamports?: string | number,
 }
 
 interface Parsed {
@@ -53,8 +53,8 @@ interface Parsed {
 }
 
 interface Instruction {
-  parsed: Parsed,
-  program: string | program,
+  parsed?: Parsed,
+  program?: string | program,
   programId: string,
 }
 
@@ -64,7 +64,7 @@ interface InnerInstruction {
 }
 
 interface Meta {
-  computeUnitsConsumed: number,
+  computeUnitsConsumed?: number,
   err: null | string,
   fee: number,
   innerInstructions: Array<InnerInstruction>,
@@ -74,7 +74,7 @@ interface Meta {
   preBalances: Array<number>,
   preTokenBalances: Array<TokenBalance>,
   rewards: Array<string>,
-  status: Object,
+  status: Record<string, unknown>,
 }
 
 interface AccountKey {

@@ -1,4 +1,4 @@
-const { extract } = require('./index');
+import { extract } from './index';
 
 const transactionDetails = {
   "blockTime": 1676983386,
@@ -171,8 +171,7 @@ const transactionDataExample = {
 describe('extract', () => {
   test('extract data from transaction details', async () => {
     const transactionData = extract(transactionDetails);
-    console.log(transactionData);
-    
+
     expect(transactionData.from).toBe(transactionDataExample.from);
     expect(transactionData.to).toBe(transactionDataExample.to);
     expect(transactionData.amount).toBe(transactionDataExample.amount);

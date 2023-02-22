@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "node src/index.ts",
+    "lint": "tsc --noEmit && eslint . --ext .js,.ts",
     "test": "jest"
   },
   "types": "src/index.types.ts",
