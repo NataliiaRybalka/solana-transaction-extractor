@@ -41,10 +41,10 @@ interface Info {
   mint: string,
   multisigAuthority: string,
   signers: Array<string>,
-  source: string,
-  tokenAmount: TokenAmount,
-  amount: string,
-  lamports: string,
+  source: string | source,
+  tokenAmount?: TokenAmount,
+  amount?: string,
+  lamports?: string,
 }
 
 interface Parsed {
@@ -54,18 +54,18 @@ interface Parsed {
 
 interface Instruction {
   parsed: Parsed,
-  program: program,
+  program: string | program,
   programId: string,
 }
 
 interface InnerInstruction {
   index: number,
-  instructions: Instruction,
+  instructions: Array<Instruction>,
 }
 
 interface Meta {
   computeUnitsConsumed: number,
-  err: boolean | string,
+  err: null | string,
   fee: number,
   innerInstructions: Array<InnerInstruction>,
   logMessages: Array<string>,
@@ -80,7 +80,7 @@ interface Meta {
 interface AccountKey {
   pubkey: string,
   signer: boolean,
-  source: source,
+  source: string | source,
   writable: boolean,
 }
 
@@ -107,6 +107,6 @@ export interface TransactionData {
   from: string,
   to: string,
   amount: number,
-  date: Date,
+  date: string,
   signature: string,
 }

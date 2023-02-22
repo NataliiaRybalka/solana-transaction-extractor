@@ -5,8 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "start": "node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "types": "src/index.types.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NataliiaRybalka/solana-transaction-extractor.git"
