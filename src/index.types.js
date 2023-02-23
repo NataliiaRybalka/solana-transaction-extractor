@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.program = exports.type = exports.source = void 0;
+exports.currency = exports.program = exports.type = exports.source = void 0;
 var source;
 (function (source) {
     source["transaction"] = "transaction";
@@ -24,3 +24,8 @@ var program;
     program["splToken"] = "spl-token";
     program["system"] = "system";
 })(program = exports.program || (exports.program = {}));
+var currency;
+(function (currency) {
+    currency["sol"] = "sol";
+    currency["usdc"] = "usdc";
+})(currency = exports.currency || (exports.currency = {}));

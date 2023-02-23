@@ -21,6 +21,11 @@ export enum program {
   system = 'system',
 }
 
+export enum currency {
+  sol = 'sol',
+  usdc = 'usdc',
+}
+
 interface TokenAmount {
   amount: string,
   decimals: number,
@@ -44,7 +49,7 @@ interface Info {
   source?: string | source,
   tokenAmount?: TokenAmount,
   amount?: string,
-  lamports?: string | number,
+  lamports?: number,
 }
 
 interface Parsed {
@@ -106,7 +111,8 @@ export interface TransactionDetail {
 export interface TransactionData {
   from: string,
   to: string,
-  amount: string,
+  amount: number,
+  currency: currency,
   date: string,
   signature: string,
 }

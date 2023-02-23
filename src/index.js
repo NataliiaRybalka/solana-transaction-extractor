@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
 exports.extract = void 0;
-var web3_js_1 = require("@solana/web3.js");
+var index_types_1 = require("./index.types");
+var convertSum_1 = require("./lib/utils/convertSum");
 var types = ['mintTo', 'mintToChecked', 'transfer', 'transferChecked'];
 /**
  * Extract data from transaction.
@@ -20,7 +21,8 @@ function extract(transactionDetail) {
     var data = {
         from: null,
         to: null,
-        amount: '0',
+        amount: 0,
+        currency: null,
         date: String(new Date),
         signature: null
     };
@@ -29,28 +31,28 @@ function extract(transactionDetail) {
     if (isCorrectType.parsed.type === 'mintTo') {
         data.to = postTokenBalances[0].owner;
         var mintInstruction = innerInstructions.find(function (instruction) { return instruction.parsed.type === 'mintTo'; });
-        var amount = String(Number(mintInstruction.parsed.info.amount) / web3_js_1.LAMPORTS_PER_SOL);
-        data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+        data.currency = index_types_1.currency.usdc;
+        data.amount = convertSum_1.convertSum(mintInstruction.parsed.info.amount, data.currency);
         return data;
     }
     if (isCorrectType.parsed.type === 'mintToChecked') {
         data.to = postTokenBalances[0].owner;
-        var amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / web3_js_1.LAMPORTS_PER_SOL);
-        data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+        data.currency = index_types_1.currency.usdc;
+        data.amount = convertSum_1.convertSum(messageInstructions[0].parsed.info.tokenAmount.amount, data.currency);
         return data;
     }
     if (isCorrectType.parsed.type === 'transfer') {
         data.from = messageInstructions[0].parsed.info.source;
         data.to = messageInstructions[0].parsed.info.destination;
-        var amount = String(Number(messageInstructions[0].parsed.info.lamports) / web3_js_1.LAMPORTS_PER_SOL);
-        data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+        data.currency = index_types_1.currency.sol;
+        data.amount = convertSum_1.convertSum(messageInstructions[0].parsed.info.lamports, data.currency);
         return data;
     }
     if (isCorrectType.parsed.type === 'transferChecked') {
         data.from = postTokenBalances[1].owner;
         data.to = postTokenBalances[0].owner;
-        var amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / web3_js_1.LAMPORTS_PER_SOL);
-        data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+        data.currency = index_types_1.currency.usdc;
+        data.amount = messageInstructions[0].parsed.info.tokenAmount.uiAmount;
         return data;
     }
 }

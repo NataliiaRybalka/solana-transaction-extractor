@@ -1,5 +1,5 @@
-import { LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { TransactionDetail, TransactionData } from './index.types';
+import { TransactionDetail, TransactionData, currency } from './index.types';
+import { convertSum } from './lib/utils/convertSum';
 
 const types: Array<string> = ['mintTo', 'mintToChecked', 'transfer', 'transferChecked'];
 
@@ -21,7 +21,8 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   const data: TransactionData = {
     from: null,
     to: null,
-    amount: '0',
+    amount: 0,
+    currency: null,
     date: String(new Date),
     signature: null,
   };
@@ -32,16 +33,16 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   if (isCorrectType.parsed.type === 'mintTo') {
     data.to = postTokenBalances[0].owner;
     const mintInstruction = innerInstructions.find(instruction => instruction.parsed.type === 'mintTo');
-    const amount = String(Number(mintInstruction.parsed.info.amount) / LAMPORTS_PER_SOL);
-    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+    data.currency = currency.usdc;
+    data.amount = convertSum(mintInstruction.parsed.info.amount, data.currency);
 
     return data;
   }
 
   if (isCorrectType.parsed.type === 'mintToChecked') {
     data.to = postTokenBalances[0].owner;
-    const amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL);
-    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+    data.currency = currency.usdc;
+    data.amount = convertSum(messageInstructions[0].parsed.info.tokenAmount.amount, data.currency);
 
     return data;
   }
@@ -49,8 +50,8 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   if (isCorrectType.parsed.type === 'transfer') {
     data.from = messageInstructions[0].parsed.info.source;
     data.to = messageInstructions[0].parsed.info.destination;
-    const amount = String(Number(messageInstructions[0].parsed.info.lamports) / LAMPORTS_PER_SOL);
-    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+    data.currency = currency.sol;
+    data.amount = convertSum(messageInstructions[0].parsed.info.lamports, data.currency);
 
     return data;
   }
@@ -58,8 +59,8 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   if (isCorrectType.parsed.type === 'transferChecked') {
     data.from = postTokenBalances[1].owner;
     data.to = postTokenBalances[0].owner;
-    const amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL);
-    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+    data.currency = currency.usdc;
+    data.amount = messageInstructions[0].parsed.info.tokenAmount.uiAmount;
 
     return data;
   }
