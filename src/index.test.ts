@@ -163,7 +163,7 @@ const transactionDetails = {
 const transactionDataExample = {
   from: '8D3Dfbs2e7WFBWKvrsEJzZVtTockJLUwBxERi4gorjnN',
   to: '89D7KBRL4xnfotkdVojgCmWNNp6wpqBqaufSHwUNuoMu',
-  amount: 0.00000001,
+  amount: '0.00000001',
   date: String(new Date(1676983386 * 1000)),
   signature: '2QpFBTbWZ2M1hxq3aFQKCUtnd9WoEdz14Xp6ij6zeBK36hrkKZ7nC3L9EHLdTaQthwgoPRDDSu2LtnqPczZzPJDg',
 };

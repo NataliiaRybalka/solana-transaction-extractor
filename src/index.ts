@@ -21,7 +21,7 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   const data: TransactionData = {
     from: null,
     to: null,
-    amount: 0,
+    amount: '0',
     date: String(new Date),
     signature: null,
   };
@@ -32,27 +32,35 @@ export function extract(transactionDetail: TransactionDetail): TransactionData {
   if (isCorrectType.parsed.type === 'mintTo') {
     data.to = postTokenBalances[0].owner;
     const mintInstruction = innerInstructions.find(instruction => instruction.parsed.type === 'mintTo');
-    data.amount = Number(mintInstruction.parsed.info.amount) / LAMPORTS_PER_SOL;
+    const amount = String(Number(mintInstruction.parsed.info.amount) / LAMPORTS_PER_SOL);
+    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+
     return data;
   }
 
   if (isCorrectType.parsed.type === 'mintToChecked') {
     data.to = postTokenBalances[0].owner;
-    data.amount = Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL;
+    const amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL);
+    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+
     return data;
   }
 
   if (isCorrectType.parsed.type === 'transfer') {
     data.from = messageInstructions[0].parsed.info.source;
     data.to = messageInstructions[0].parsed.info.destination;
-    data.amount = Number(messageInstructions[0].parsed.info.lamports) / LAMPORTS_PER_SOL;
+    const amount = String(Number(messageInstructions[0].parsed.info.lamports) / LAMPORTS_PER_SOL);
+    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+
     return data;
   }
 
   if (isCorrectType.parsed.type === 'transferChecked') {
     data.from = postTokenBalances[1].owner;
     data.to = postTokenBalances[0].owner;
-    data.amount = Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL;
+    const amount = String(Number(messageInstructions[0].parsed.info.tokenAmount.amount) / LAMPORTS_PER_SOL);
+    data.amount = parseFloat(amount).toFixed(Number(amount[amount.length - 1]));
+
     return data;
   }
 };

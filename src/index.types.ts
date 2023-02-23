@@ -106,7 +106,7 @@ export interface TransactionDetail {
 export interface TransactionData {
   from: string,
   to: string,
-  amount: number,
+  amount: string,
   date: string,
   signature: string,
 }
