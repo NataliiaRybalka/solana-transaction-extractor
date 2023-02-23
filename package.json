@@ -1,6 +1,6 @@
 {
   "name": "solana-transaction-extractor",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Solana Transaction Extractor",
   "main": "index.ts",
   "scripts": {
