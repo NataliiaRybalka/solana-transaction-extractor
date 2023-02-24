@@ -1,6 +1,7 @@
+import { ParsedTransactionWithMeta, PublicKey } from '@solana/web3.js';
 import { extract } from './index';
 
-const transactionDetails = {
+const transactionDetails: ParsedTransactionWithMeta = {
   "blockTime": 1676983386,
   "meta": {
     "computeUnitsConsumed": 6353,
@@ -26,7 +27,6 @@ const transactionDetails = {
         "accountIndex": 1,
         "mint": "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
         "owner": "89D7KBRL4xnfotkdVojgCmWNNp6wpqBqaufSHwUNuoMu",
-        "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
         "uiTokenAmount": {
           "amount": "1286500510",
           "decimals": 6,
@@ -38,7 +38,6 @@ const transactionDetails = {
         "accountIndex": 2,
         "mint": "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
         "owner": "8D3Dfbs2e7WFBWKvrsEJzZVtTockJLUwBxERi4gorjnN",
-        "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
         "uiTokenAmount": {
           "amount": "2761249490",
           "decimals": 6,
@@ -60,7 +59,6 @@ const transactionDetails = {
         "accountIndex": 1,
         "mint": "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
         "owner": "89D7KBRL4xnfotkdVojgCmWNNp6wpqBqaufSHwUNuoMu",
-        "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
         "uiTokenAmount": {
           "amount": "1286500500",
           "decimals": 6,
@@ -72,7 +70,6 @@ const transactionDetails = {
         "accountIndex": 2,
         "mint": "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
         "owner": "8D3Dfbs2e7WFBWKvrsEJzZVtTockJLUwBxERi4gorjnN",
-        "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
         "uiTokenAmount": {
           "amount": "2761249500",
           "decimals": 6,
@@ -80,48 +77,44 @@ const transactionDetails = {
           "uiAmountString": "2761.2495"
         }
       }
-    ],
-    "rewards": [],
-    "status": {
-      "Ok": null
-    }
+    ]
   },
   "slot": 197238273,
   "transaction": {
     "message": {
       "accountKeys": [
         {
-          "pubkey": "8D3Dfbs2e7WFBWKvrsEJzZVtTockJLUwBxERi4gorjnN",
+          "pubkey": new PublicKey("8D3Dfbs2e7WFBWKvrsEJzZVtTockJLUwBxERi4gorjnN"),
           "signer": true,
           "source": "transaction",
           "writable": true
         },
         {
-          "pubkey": "7UstFtoqvzpMGaRrEKSTRuCGRZm6vRpSYp9SpRgDgMJZ",
+          "pubkey": new PublicKey("7UstFtoqvzpMGaRrEKSTRuCGRZm6vRpSYp9SpRgDgMJZ"),
           "signer": false,
           "source": "transaction",
           "writable": true
         },
         {
-          "pubkey": "CiNZ1qA5StkEn8oeABrr5ip43GRS3PBA8a3C9eMSs858",
+          "pubkey": new PublicKey("CiNZ1qA5StkEn8oeABrr5ip43GRS3PBA8a3C9eMSs858"),
           "signer": false,
           "source": "transaction",
           "writable": true
         },
         {
-          "pubkey": "9NWvPxNVqsc7bvk5LRKKjVb3V9xQffwqsXtg3yaJTAkx",
+          "pubkey": new PublicKey("9NWvPxNVqsc7bvk5LRKKjVb3V9xQffwqsXtg3yaJTAkx"),
           "signer": false,
           "source": "transaction",
           "writable": false
         },
         {
-          "pubkey": "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
+          "pubkey": new PublicKey("Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr"),
           "signer": false,
           "source": "transaction",
           "writable": false
         },
         {
-          "pubkey": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "pubkey": new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
           "signer": false,
           "source": "transaction",
           "writable": false
@@ -149,7 +142,7 @@ const transactionDetails = {
             "type": "transferChecked"
           },
           "program": "spl-token",
-          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+          "programId": new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
         }
       ],
       "recentBlockhash": "GavEACWoAoxN5HU5kCqPNc8bWMUeWsvQdVvcAemvo4XT"

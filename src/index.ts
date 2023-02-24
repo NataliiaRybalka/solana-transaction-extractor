@@ -1,4 +1,5 @@
-import { TransactionDetail, TransactionData, currency } from './lib/types/index.types';
+import { ParsedInstruction, ParsedTransactionWithMeta } from '@solana/web3.js';
+import { TransactionData, currency } from './lib/types/index.types';
 import { convertSum } from './lib/utils/convertSum';
 
 const types: Array<string> = ['mintTo', 'mintToChecked', 'transfer', 'transferChecked'];
@@ -8,10 +9,11 @@ const types: Array<string> = ['mintTo', 'mintToChecked', 'transfer', 'transferCh
  * @param {TransactionDetail} transactionDetail - The transaction object.
  * @returns {TransactionData} - The extract data from transaction.
  */
-export function extract(transactionDetail: TransactionDetail): TransactionData {
-  const innerInstructions = transactionDetail.meta.innerInstructions[0] && transactionDetail.meta.innerInstructions[0].instructions;
+export function extract(transactionDetail: ParsedTransactionWithMeta): TransactionData {
+  const innerInstructions = 
+    transactionDetail.meta.innerInstructions[0] && transactionDetail.meta.innerInstructions[0].instructions as ParsedInstruction[];
   const postTokenBalances = transactionDetail.meta.postTokenBalances;
-  const messageInstructions = transactionDetail.transaction.message.instructions;
+  const messageInstructions = transactionDetail.transaction.message.instructions as ParsedInstruction[];
 
   const isCorrectType = innerInstructions
     ? innerInstructions.find(instruction => types.includes(instruction.parsed.type))
