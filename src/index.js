@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.extract = void 0;
-var index_types_1 = require("./index.types");
+var index_types_1 = require("./lib/types/index.types");
 var convertSum_1 = require("./lib/utils/convertSum");
 var types = ['mintTo', 'mintToChecked', 'transfer', 'transferChecked'];
 /**

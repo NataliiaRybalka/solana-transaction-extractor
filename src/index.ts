@@ -1,4 +1,4 @@
-import { TransactionDetail, TransactionData, currency } from './index.types';
+import { TransactionDetail, TransactionData, currency } from './lib/types/index.types';
 import { convertSum } from './lib/utils/convertSum';
 
 const types: Array<string> = ['mintTo', 'mintToChecked', 'transfer', 'transferChecked'];

@@ -1,5 +1,5 @@
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { currency } from '../../index.types';
+import { currency } from '../types/index.types';
 
 const LAMPORTS_PER_USDC = 1000000;
 

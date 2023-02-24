@@ -1,11 +1,10 @@
 {
   "name": "solana-transaction-extractor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Solana Transaction Extractor",
   "main": "src/index.js",
   "scripts": {
     "build": "tsc src/index.ts",
-    "start": "node src/index.ts",
     "lint": "tsc --noEmit && eslint . --ext .js,.ts",
     "test": "jest"
   },
