@@ -1,6 +1,6 @@
 {
   "name": "solana-transaction-extractor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Solana Transaction Extractor",
   "main": "src/index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "lint": "tsc --noEmit && eslint . --ext .js,.ts",
     "test": "jest"
   },
-  "types": "src/index.types.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NataliiaRybalka/solana-transaction-extractor.git"
